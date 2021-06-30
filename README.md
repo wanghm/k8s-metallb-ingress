@@ -1,51 +1,61 @@
 # metallb lab
+
 オンプレミズKubernetsクラスタにmetallbロードバランサーをセットアップする。
 
 [参考サイト](https://kubernetes.github.io/ingress-nginx/deploy/baremetal/)
 
 ![構成図](./images/metallb.jpg)
 
-# 手順
+## 手順
 
-## 1. メタファイルをダウンロード
+### 1. メタファイルをダウンロード
 
 ```
 git clonne https://github.com/ntnx-huimin/metallb.git
 ```
 
-## 2. IP Poolを設定
+### 2. metallbのデプロイ
+
+```bash
+cd 1.metallb/
+kubectl apply -f namespace.yaml
+kubectl applhy -f metallb.yaml
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
+### 3. IP Poolを設定
 
 layer2-config.yamlにLB用IPアドレスのプールを設定する
-![](./images/layer2-config_IP_pools.png)
-
-## 3. デプロイ
+![IP Pool設定](./images/layer2-config_IP_pools.png)
 
 ```
-kubectl apply -f namespace.yaml
-kubectl apply -f metallb.yaml
-kubectl layer2-config.yaml
+kubectl applhy -f layer2-config.yaml
+```
+![metallbのデプロイ結果](./images/result-metallb.png)
+
+### 4. nginx ingress controllerのデプロイ
+
+サービス「ingress-nginx-controller」の種類を「LoadBalancer」に変更
+
+![ingress-nginx-controller」の種類を「LoadBalancer」に変更](./images/ingress-nginx-change-service-type.png)
+
+```
+cd ../2.ingress-nginx
 kubectl apply -f nginx-ingress/deploy.yaml
-```
-
-## 4. 確認
-
-```
-kubectl get all -n metallb-system
-```
-![](./images/result-metallb.png)
-
-```
 kubectl get all -n ingress-nginx
 ```
-![](./images/result-ingress-nginx.png)
+![nginx ingress controllerのデプロイ結果](./images/result-ingress-nginx.png)
 
-## 5. 確認用ワークロードをデプロイ
+### 5. 確認用ワークロードをデプロイ
 
 ```
-kubectl apply -f test-nginx.yaml
+cd ../3.test/
+kubectl apply -f test-nginx.yaml test-nginx.yaml
+kubectl apply -f test-ingress-resource.yaml
+```
 
-# 確認
+### 確認
+
+```
 kubectl get all
 ```
-![](./images/result-workload.png)
 
