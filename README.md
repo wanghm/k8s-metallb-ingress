@@ -11,7 +11,7 @@
 ### 1. リソースファイルをダウンロード
 
 ```
-git clonne https://github.com/ntnx-huimin/metallb.git
+git clonne https://github.com/ntnx-huimin/k8s-metallb-ingress.git
 ```
 
 ### 2. metallbのデプロイ
@@ -72,7 +72,7 @@ echo "Hello from front pod with nginx"> front/index.html
 
 ```
 
-### 確認
+### 6. 確認
 
 ```
 kubectl get svc -n ingress-nginx
@@ -81,4 +81,5 @@ curl http://10.129.45.13/front/index.html
 
 curl http://10.129.45.13/backoffice/index.html
 ```
+
 
