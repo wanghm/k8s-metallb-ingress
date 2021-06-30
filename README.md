@@ -1,14 +1,14 @@
 # metallb lab
 
-オンプレミズKubernetsクラスタにmetallbロードバランサーをセットアップする。
+オンプレミズKubernetsクラスタにmetallbロードバランサー、nginxイングレスコントローラをセットアップする。
 
 [参考サイト](https://kubernetes.github.io/ingress-nginx/deploy/baremetal/)
 
-![構成図](./images/metallb.jpg)
+![構成図](./images/構成図.png)
 
 ## 手順
 
-### 1. メタファイルをダウンロード
+### 1. リソースファイルをダウンロード
 
 ```
 git clonne https://github.com/ntnx-huimin/metallb.git
@@ -16,7 +16,7 @@ git clonne https://github.com/ntnx-huimin/metallb.git
 
 ### 2. metallbのデプロイ
 
-```bash
+```
 cd 1.metallb/
 kubectl apply -f namespace.yaml
 kubectl applhy -f metallb.yaml
@@ -53,9 +53,32 @@ kubectl apply -f test-nginx.yaml test-nginx.yaml
 kubectl apply -f test-ingress-resource.yaml
 ```
 
+### 6. Podにindex.htmlファイルを配置
+
+```
+kubectl get pod
+
+# backoffice pod
+kubectl exec -it httpd-799d75575c-8g8zd # 確認したpod名を利用
+cd /usr/local/apache2/htdocs
+mkdir -p backoffice
+echo "backoffice with httpd">backoffice/index.html
+
+# front pod
+kubectl exec -it nginx-8c9df995d-p6lpm bash　# 確認したpod名を利用
+cd /usr/share/nginx/html/
+mkdir -p front
+echo "Hello from front pod with nginx"> front/index.html
+
+```
+
 ### 確認
 
 ```
-kubectl get all
+kubectl get svc -n ingress-nginx
+
+curl http://10.129.45.13/front/index.html
+
+curl http://10.129.45.13/backoffice/index.html
 ```
 

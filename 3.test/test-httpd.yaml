@@ -26,10 +26,10 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
     targetPort: 80
     nodePort: 30081
   selector:
     app: httpd
-  type: LoadBalancer
+  type: NodePort

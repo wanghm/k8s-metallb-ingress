@@ -12,11 +12,11 @@ spec:
           service:
             name: front
             port:
-              number: 30080
+              number: 8080
       - path: /backoffice
         pathType: Prefix
         backend:
           service:
             name: backoffice
             port:
-              number: 30081
+              number: 8080
