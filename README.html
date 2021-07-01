@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="metallb--ingress">metallb + ingress</h1>
+<p>オンプレミズKubernetsクラスタにmetallbロードバランサー、nginxイングレスコントローラをセットアップする。</p>
+<p><a href="https://kubernetes.github.io/ingress-nginx/deploy/baremetal/">参考サイト</a></p>
+<p><img src="./images/構成図.png" alt="構成図"></p>
+<h2 id="%E6%89%8B%E9%A0%86">手順</h2>
+<h3 id="1-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89">1. リソースファイルをダウンロード</h3>
+<pre class="hljs"><code><div>git clonne https://github.com/ntnx-huimin/k8s-metallb-ingress.git
+</div></code></pre>
+<h3 id="2-metallb%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4">2. metallbのデプロイ</h3>
+<pre class="hljs"><code><div>cd 1.metallb/
+kubectl apply -f namespace.yaml
+kubectl applhy -f metallb.yaml
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey=&quot;$(openssl rand -base64 128)&quot;
+</div></code></pre>
+<h3 id="3-ip-pool%E3%82%92%E8%A8%AD%E5%AE%9A">3. IP Poolを設定</h3>
+<p>layer2-config.yamlにLB用IPアドレスのプールを設定する
+<img src="./images/layer2-config_IP_pools.png" alt="IP Pool設定"></p>
+<pre class="hljs"><code><div>kubectl applhy -f layer2-config.yaml
+</div></code></pre>
+<p><img src="./images/result-metallb.png" alt="metallbのデプロイ結果"></p>
+<h3 id="4-nginx-ingress-controller%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4">4. nginx ingress controllerのデプロイ</h3>
+<p>サービス「ingress-nginx-controller」の種類を「LoadBalancer」に変更</p>
+<p><img src="./images/ingress-nginx-change-service-type.png" alt="ingress-nginx-controller」の種類を「LoadBalancer」に変更"></p>
+<pre class="hljs"><code><div>cd ../2.ingress-nginx
+kubectl apply -f nginx-ingress/deploy.yaml
+kubectl get all -n ingress-nginx
+</div></code></pre>
+<p><img src="./images/result-ingress-nginx.png" alt="nginx ingress controllerのデプロイ結果"></p>
+<h3 id="5-%E7%A2%BA%E8%AA%8D%E7%94%A8%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%89%E3%82%92%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4">5. 確認用ワークロードをデプロイ</h3>
+<pre class="hljs"><code><div>cd ../3.test/
+kubectl apply -f test-nginx.yaml -f test-nginx.yaml
+kubectl apply -f test-ingress-resource.yaml
+</div></code></pre>
+<h3 id="6-pod%E3%81%ABindexhtml%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E9%85%8D%E7%BD%AE">6. Podにindex.htmlファイルを配置</h3>
+<pre class="hljs"><code><div>kubectl get pod
+
+# backoffice pod
+kubectl exec -it httpd-799d75575c-8g8zd # 確認したpod名を利用
+cd /usr/local/apache2/htdocs
+mkdir -p backoffice
+echo &quot;backoffice with httpd&quot;&gt;backoffice/index.html
+
+# front pod
+kubectl exec -it nginx-8c9df995d-p6lpm bash　# 確認したpod名を利用
+cd /usr/share/nginx/html/
+mkdir -p front
+echo &quot;Hello from front pod with nginx&quot;&gt; front/index.html
+
+</div></code></pre>
+<h3 id="6-%E7%A2%BA%E8%AA%8D">6. 確認</h3>
+<pre class="hljs"><code><div>kubectl get svc -n ingress-nginx
+
+curl http://10.129.45.13/front/index.html
+
+curl http://10.129.45.13/backoffice/index.html
+</div></code></pre>
+<h3 id="7-traefik-ingress-controller%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4option">7. traefik  ingress controllerのデプロイ(Option)</h3>
+<pre class="hljs"><code><div>cd ../4.traefik
+kubectl create ns -n traefik
+kubectl -n traefik apply -f 01-traefik-CRD.yaml
+kubectl -n traefik apply -f 02-traefik-svc.yaml
+kubectl -n traefik apply -f 03-traefik-Deployment.yaml
+
+# 確認
+kubectl get all -n traefik
+</div></code></pre>
+<p><img src="./images/result-ingress-traefik.png" alt="traefik ingress controllerのデプロイ結果"></p>
+<p>ブラウザでURL: http://10.129.45.11:8080 にアクセス
+<img src="./images/result-ingress-traefik-browser.png" alt="traefik ingress controllerのデプロイ結果"></p>
+
+</body>
+</html>

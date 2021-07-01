@@ -25,6 +25,7 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 ### 3. IP Poolを設定
 
 layer2-config.yamlにLB用IPアドレスのプールを設定する
+
 ![IP Pool設定](./images/layer2-config_IP_pools.png)
 
 ```
