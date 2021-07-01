@@ -1,4 +1,4 @@
-# metallb lab
+# metallb + ingress
 
 オンプレミズKubernetsクラスタにmetallbロードバランサー、nginxイングレスコントローラをセットアップする。
 
@@ -49,7 +49,7 @@ kubectl get all -n ingress-nginx
 
 ```
 cd ../3.test/
-kubectl apply -f test-nginx.yaml test-nginx.yaml
+kubectl apply -f test-nginx.yaml -f test-nginx.yaml
 kubectl apply -f test-ingress-resource.yaml
 ```
 
@@ -82,4 +82,20 @@ curl http://10.129.45.13/front/index.html
 curl http://10.129.45.13/backoffice/index.html
 ```
 
+### 7. traefik  ingress controllerのデプロイ
+
+```
+cd ../4.traefik
+kubectl create ns -n traefik
+kubectl -n traefik apply -f 01-traefik-CRD.yaml
+kubectl -n traefik apply -f 02-traefik-svc.yaml
+kubectl -n traefik apply -f 03-traefik-Deployment.yaml
+
+# 確認
+kubectl get all -n traefik
+```
+![traefik ingress controllerのデプロイ結果](./images/result-ingress-traefik.png)
+
+ブラウザでURL: http://10.129.45.11:8080 にアクセス
+![traefik ingress controllerのデプロイ結果](./images/result-ingress-traefik-browser.png)
 
