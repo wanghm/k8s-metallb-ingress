@@ -82,7 +82,7 @@ curl http://10.129.45.13/front/index.html
 curl http://10.129.45.13/backoffice/index.html
 ```
 
-### 7. traefik  ingress controllerのデプロイ
+### 7. traefik  ingress controllerのデプロイ(Option)
 
 ```
 cd ../4.traefik
