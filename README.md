@@ -41,7 +41,7 @@ kubectl applhy -f layer2-config.yaml
 
 ```
 cd ../2.ingress-nginx
-kubectl apply -f nginx-ingress/deploy.yaml
+kubectl apply -f ingress-nginx-deploy.yaml
 kubectl get all -n ingress-nginx
 ```
 ![nginx ingress controllerのデプロイ結果](./images/result-ingress-nginx.png)
